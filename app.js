@@ -5,9 +5,11 @@
 
 var express = require('express'),
     redis = require('redis'),
+    socketio = require('socket.io'),
     processor = require('./processor');
 
 var app = module.exports = express.createServer();
+var io = socketio.listen(app);
 
 // Configuration
 
@@ -53,5 +55,21 @@ app.get('/irc', function(req, res){
     client.quit()
 });
 
+app.get('/sockets', function(req, res){
+    
+});
+
+
+
+
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
+io.sockets.on('connection', function (socket) {
+    client= redis.createClient();
+    client.on("pmessage", function (pattern, channel, message) {
+        socket.emit('message', { message: processor.process([message]) });
+        console.log("("+  pattern +")" + " client1 received message on " + channel + ": " + message);
+    });
+    client.psubscribe("automation");
+});

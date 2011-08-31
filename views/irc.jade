@@ -3,3 +3,15 @@ p
       - each message in irc 
         #{message} 
         br
+script(type="text/javascript", src="/socket.io/socket.io.js")
+script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js")
+
+script
+  $(document).ready(function () {
+    var socket = io.connect('http://localhost');
+      socket.on('message', function (data) {
+        var str = $('p').html();
+        $('p').html(str + data["message"][0] + ' <br />');
+        console.log(data);
+      });
+  });
