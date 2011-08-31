@@ -4,7 +4,21 @@ exports.process = function(datArray){
     for (var i=0; i< datArray.length; i++){
         element = JSON.parse(datArray[i])
         try{
-            message.push(formattedDate(element["timestamp"]) + " : "+ element["from"] + " => "+ element["message"]);
+            if (element["message"]){
+                message.push(formattedDate(element["timestamp"]) + " : "+ element["from"] + " => "+ element["message"]);
+            }
+            switch(element["action"]){
+                case "nick":
+                    message.push(formattedDate(element["timestamp"]) + " : " + element["oldnick"] + " is now known as " + element["newnick"]);
+                    break;
+                case "join":
+                    message.push(formattedDate(element["timestamp"]) + " : " + element["who"] + " has joined the chat room.");
+                    break;
+                case "quit":
+                case "part":
+                    message.push(formattedDate(element["timestamp"]) + " : " + element["who"] + " has left the chat room. " + element["reason"]);
+            }
+            
         } catch (e) {
             console.error(e)
         }
