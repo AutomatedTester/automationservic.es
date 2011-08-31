@@ -8,7 +8,7 @@ script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery
 
 script
   $(document).ready(function () {
-    var socket = io.connect('http://localhost');
+    var socket = io.connect(window.location.origin);
       socket.on('message', function (data) {
         var str = $('p').html();
         $('p').html(str + data["message"][0] + ' <br />');
