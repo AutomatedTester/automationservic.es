@@ -18,7 +18,6 @@ exports.process = function(datArray){
                 case "part":
                     message.push(formattedDate(element["timestamp"]) + " : " + element["who"] + " has left the chat room. " + element["reason"]);
             }
-            
         } catch (e) {
             console.error(e)
         }
