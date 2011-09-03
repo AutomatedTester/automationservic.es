@@ -1,5 +1,5 @@
 h1= title
-p 
+div(style="max-height:510px;overflow:auto;") 
       - each message in irc 
         #{message} 
         br
@@ -10,8 +10,9 @@ script
   $(document).ready(function () {
     var socket = io.connect(window.location.origin);
       socket.on('message', function (data) {
-        var str = $('p').html();
-        $('p').html(str + data["message"][0] + ' <br />');
+        var str = $('div').html();
+        $('div').html(str + data["message"][0] + ' <br />');
+        $('div').scrollTop(510);
         console.log(data);
       });
   });
