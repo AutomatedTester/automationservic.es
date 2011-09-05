@@ -41,34 +41,33 @@ app.get('/', function(req, res){
 });
 
 app.get('/team', function(req, res){
-    res.render('team', {
-        title: 'Automation Services'
-    });
+  res.render('team', {
+    title: 'Automation Services'
+  });
 });
 
 app.get('/irc', function(req, res){
-    client = redis.createClient();
-    client.lrange('automation', -30, -1, function(err, d){
-        lrang = processor.process(d);
+  client = redis.createClient();
+  client.lrange('automation', -30, -1, function(err, d){
+    lrang = processor.process(d);       
         
-        
-        // Let's render!
-        res.render('irc', {
-            title: 'Automation Services',
-            irc : lrang,
-        });
-    });
-    client.quit()
+     // Let's render!
+     res.render('irc', {
+       title: 'Automation Services',
+       irc : lrang,
+      });
+  });
+  client.quit()
 });
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
 io.sockets.on('connection', function (socket) {
-    client= redis.createClient();
-    client.on("pmessage", function (pattern, channel, message) {
-        socket.emit('message', { message: processor.process([message]) });
-        console.log("("+  pattern +")" + " client1 received message on " + channel + ": " + message);
-    });
-    client.psubscribe("automation");
+  client= redis.createClient();
+  client.on("pmessage", function (pattern, channel, message) {
+    socket.emit('message', { message: processor.process([message]) });
+    console.log("("+  pattern +")" + " client1 received message on " + channel + ": " + message);
+  });
+  client.psubscribe("automation");
 });
