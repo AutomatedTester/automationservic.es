@@ -40,6 +40,12 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/team', function(req, res){
+    res.render('team', {
+        title: 'Automation Services'
+    });
+});
+
 app.get('/irc', function(req, res){
     client = redis.createClient();
     client.lrange('automation', -30, -1, function(err, d){
