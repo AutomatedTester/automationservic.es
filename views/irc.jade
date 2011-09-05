@@ -1,8 +1,11 @@
 h1= title
-div(style="max-height:510px;overflow:auto;") 
+p Want to know what the team are discussing? You can follow below!
+div(id='chat') 
       - each message in irc 
         #{message} 
         br
+
+div(id='bottom')
 script(type="text/javascript", src="/socket.io/socket.io.js")
 script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js")
 
@@ -10,9 +13,9 @@ script
   $(document).ready(function () {
     var socket = io.connect(window.location.origin);
       socket.on('message', function (data) {
-        var str = $('div').html();
-        $('div').html(str + data["message"][0] + ' <br />');
-        $('div').scrollTop(510);
+        var str = $('#chat').html();
+        $('#chat').html(str + data["message"][0] + ' <br />');
+        $(window).scrollTop($(window).height());
         console.log(data);
       });
   });
