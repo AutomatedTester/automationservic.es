@@ -9,4 +9,32 @@ html
         a(href='/') home 
         a(href='/team') team 
         a(href='/irc') irc 
+        button(id='webappInstall') Install
     content!= body
+
+    script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js")
+    script(type='text/javascript', src="/javascripts/include.js")
+    script(type='text/javascript')
+      $(document).ready(function(){
+        function installCallback(result) {  
+            $('#webappInstall').hide();        
+        }  
+        function errorCallback(result) {  
+        }  
+  
+        $('#webappInstall').click(function(){
+            navigator.apps.install({  
+                url: window.location.origin + "/manifest.json",  
+                onsuccess: installCallback,  
+                onerror: errorCallback  
+            });
+        });
+        function getInstalledCallback(data) {
+          if (data) {
+            $('#webappInstall').hide();
+          }
+        }
+        navigator.apps.amInstalled(getInstalledCallback);
+      });
+            
+        

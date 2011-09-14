@@ -60,6 +60,26 @@ app.get('/irc', function(req, res){
   client.quit()
 });
 
+app.get('/manifest.json', function(req, res){
+    MANIFEST =   {
+        "version": "0.1",
+        "name": "AutomationServices",
+        "description": "AutomationServices is a team that tries to solve really big problems!",
+        "icons": {  
+            "16": "/images/robot-16.png",  
+            "48": "/images/robot-48.png",  
+            "128": "/images/robot-128.png"  
+        }, 
+        "developer": {
+          "name": "David Burns",
+          "url": "http://www.theautomatedtester.co.uk"
+        },
+        "default_locale": "en"
+    }
+
+    res.json(MANIFEST, { 'Content-Type': 'application/x-web-app-manifest+json' });
+});
+
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
