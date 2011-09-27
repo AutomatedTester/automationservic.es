@@ -72,7 +72,7 @@ app.get('/manifest.json', function(req, res){
     }, 
     "developer": {
       "name": "David Burns",
-      "url": "http://www.theautomatedtester.co.uk"
+      "url": "http://www.automationservic.es"
     },
     "default_locale": "en"
   }
@@ -87,7 +87,6 @@ io.sockets.on('connection', function (socket) {
   client= redis.createClient();
   client.on("pmessage", function (pattern, channel, message) {
     socket.emit('message', { message: processor.process([message]) });
-    console.log("("+  pattern +")" + " client1 received message on " + channel + ": " + message);
   });
   client.psubscribe("automation");
 });
