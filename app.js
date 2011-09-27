@@ -52,32 +52,32 @@ app.get('/irc', function(req, res){
     lrang = processor.process(d);       
         
      // Let's render!
-     res.render('irc', {
-       title: 'Automation Services',
-       irc : lrang,
-      });
+    res.render('irc', {
+      title: 'Automation Services',
+      irc : lrang,
+    });
   });
   client.quit()
 });
 
 app.get('/manifest.json', function(req, res){
-    MANIFEST =   {
-        "version": "0.1",
-        "name": "AutomationServices",
-        "description": "AutomationServices is a team that tries to solve really big problems!",
-        "icons": {  
-            "16": "/images/robot-16.png",  
-            "48": "/images/robot-48.png",  
-            "128": "/images/robot-128.png"  
-        }, 
-        "developer": {
-          "name": "David Burns",
-          "url": "http://www.theautomatedtester.co.uk"
-        },
-        "default_locale": "en"
-    }
+  MANIFEST =   {
+    "version": "0.1",
+    "name": "AutomationServices",
+    "description": "AutomationServices is a team that tries to solve really big problems!",
+    "icons": {  
+      "16": "/images/robot-16.png",  
+      "48": "/images/robot-48.png",  
+      "128": "/images/robot-128.png"  
+    }, 
+    "developer": {
+      "name": "David Burns",
+      "url": "http://www.theautomatedtester.co.uk"
+    },
+    "default_locale": "en"
+  }
 
-    res.json(MANIFEST, { 'Content-Type': 'application/x-web-app-manifest+json' });
+  res.json(MANIFEST, { 'Content-Type': 'application/x-web-app-manifest+json' });
 });
 
 app.listen(3000);
