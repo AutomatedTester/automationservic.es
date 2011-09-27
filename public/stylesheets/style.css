@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nav-links {
+  padding: 5px;
+  color: black;
+  background: lightgray;
+}
+
+.nav-left{
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.nav-right{
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
