@@ -3,25 +3,35 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   border-top: 2px solid #676767;
   background: #fff url(/images/background.png) 0 0 repeat-x;
-  
+  margin:0;
 }
 
 a {
   color: black;
 }
 
-.nav-links {
-  padding: 5px;
-  color: black;
-  background: lightgray;
+ul#nav {
+  font-size:13px;
+  list-style:none outside none;
+  position:relative;
+  overflow:auto;
 }
 
-.nav-left{
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+ul#nav li {
+  float:left;
+  margin: 0 7px;
 }
 
-.nav-right{
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+ul#nav li a {
+ display:block;
+ text-align:center;
+ outline: 0pt none;
+ colour: rgb(94,94,94);
+ padding:10px;
+ width:106px;
+ border: 1px solid rgba(176, 193, 210, 0.3);
+ border-radius: 6px 6px 6px 6px;
+ box-shadow: 0pt 0pt 0pt 1px rgba(255, 255, 255, 0.5) inset;
+ -moz-transition: all 0.25s ease-out 0s;
+ -moz-user-select: none;
 }

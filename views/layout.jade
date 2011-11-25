@@ -6,10 +6,15 @@ html
   body
     header
       nav
-        a(href='/', class='nav-links nav-left') home
-        a(href='/team', class='nav-links') team
-        a(href='/irc', class='nav-links') irc
-        button(id='webappInstall', class='nav-links nav-right') Install
+        ul(id='nav')
+          li
+            a(href='/') home
+          li
+            a(href='/team) team
+          li
+            a(href='/irc') irc
+          li
+            a(id='webappInstall') Install
     content!= body
 
     script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js")
